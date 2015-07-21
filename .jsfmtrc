@@ -1,0 +1,16 @@
+{
+  "preset": "default",
+
+  "lineBreak": {
+    "before": {
+      "ElseIfStatement": 1,
+      "ElseStatement": 1
+    }
+  },
+
+  "whiteSpace": {
+    "after": {
+      "FunctionReservedWord": 1
+    }
+  }
+}
