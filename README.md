@@ -30,7 +30,27 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Usage
 
-To create a package from your app:
+Say your app lives in `path/to/app`, and has a structure like this:
+
+```
+$ tree path/to/app/ -L 2
+path/to/app/
+├── LICENSE
+├── index.js
+├── main
+│   ├── index.js
+│   └── squirrel.js
+├── node_modules
+│   ├── fs-plus
+│   └── yargs
+├── package.json
+└── renderer
+    ├── index.css
+    ├── index.html
+    └── index.js
+```
+
+To create a package from your app, the configuration for your task would look like this:
 
 ```js
 'electron-windows-installer': {
@@ -41,14 +61,14 @@ To create a package from your app:
 }
 ```
 
-When the task finishes, you'll have these:
+The task will try to extract all necessary information from your `package.json`. When it finishes, you'll have these:
 
 ```
 $ ls path\to\out
 RELEASES  app-0.0.1-full.nupkg  Setup.exe
 ```
 
-To create different packages for different architectures:
+You can also create different packages for different architectures, while manually overriding certain options:
 
 ```js
 'electron-windows-installer': {
