@@ -74,6 +74,8 @@ var getDefaults = function (task, callback) {
   readPackage({src: task.data.src}, function (err, pkg) {
     pkg = pkg || {};
 
+    var year = new Date().getFullYear();
+
     var authors = pkg.author && [(typeof pkg.author === 'string' ?
       pkg.author.replace(/\s+(<[^>]+>|\([^)]+\))/g, '') :
       pkg.author.name
@@ -86,7 +88,7 @@ var getDefaults = function (task, callback) {
       productDescription: pkg.productDescription || pkg.description,
       version: pkg.version || '0.0.0',
 
-      copyright: pkg.copyright,
+      copyright: pkg.copyright || (authors && 'Copyright \u00A9 ' + year + ' ' + authors),
       authors: authors,
       owners: authors,
 
