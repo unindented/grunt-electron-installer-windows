@@ -1,50 +1,42 @@
 {
-  "name":        "grunt-electron-windows-installer",
+  "name": "grunt-electron-windows-installer",
   "description": "Create a Windows package for your Electron app.",
-  "version":     "0.1.0",
-  "license":     "MIT",
-
+  "version": "0.1.0",
+  "license": "MIT",
   "author": {
-    "name":  "Daniel Perez Alvarez",
+    "name": "Daniel Perez Alvarez",
     "email": "unindented@gmail.com",
-    "url":   "http://unindented.org/"
+    "url": "http://unindented.org/"
   },
-
   "repository": {
     "type": "git",
-    "url":  "git://github.com/unindented/grunt-electron-windows-installer.git"
+    "url": "git://github.com/unindented/grunt-electron-windows-installer.git"
   },
-
   "keywords": [
     "gruntplugin",
     "electron"
   ],
-
   "os": [
     "win32"
   ],
-
   "scripts": {
     "test": "grunt test"
   },
-
   "dependencies": {
-    "asar":     "^0.8.0",
-    "async":    "^1.4.2",
+    "asar": "^0.8.0",
+    "async": "^1.4.2",
     "fs-extra": "^0.24.0",
-    "glob":     "^5.0.14",
-    "lodash":   "^3.10.1",
-    "rcedit":   "^0.3.0",
-    "temp":     "^0.8.3"
+    "glob": "^5.0.14",
+    "lodash": "^3.10.1",
+    "rcedit": "^0.3.0",
+    "temp": "^0.8.3"
   },
-
   "devDependencies": {
-    "grunt":                  "^0.4.0",
-    "grunt-contrib-clean":    "^0.6.0",
-    "grunt-contrib-jshint":   "^0.11.2",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-nodeunit": "^0.4.1"
   },
-
   "peerDependencies": {
     "grunt": "^0.4.0"
   }
