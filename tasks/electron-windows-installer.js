@@ -17,6 +17,11 @@ var exec = function (file, args, callback) {
   var error = null;
   var stderr = '';
 
+  if (process.platform !== 'win32') {
+    args = [file].concat(args);
+    file = 'mono';
+  }
+
   try {
     execdProcess = child.execFile(file, args);
   }
@@ -260,7 +265,8 @@ var findPackage = function (options, dir, callback) {
 var releasifyPackage = function (options, dir, pkg, callback) {
   var squirrelDir = path.join(dir, 'squirrel');
 
-  var cmd = path.resolve(__dirname, '../vendor/squirrel/Squirrel.com');
+  var cmd = path.resolve(__dirname, '../vendor/squirrel/' +
+    (process.platform === 'win32' ? 'Squirrel.com' : 'Squirrel-Mono.exe'));
   var args = [
     '--releasify',
     pkg,

@@ -16,9 +16,6 @@
     "gruntplugin",
     "electron"
   ],
-  "os": [
-    "win32"
-  ],
   "scripts": {
     "test": "grunt test"
   },
