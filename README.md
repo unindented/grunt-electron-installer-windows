@@ -2,8 +2,7 @@
 
 > Create a Windows package for your Electron app.
 
-
-🚨 This package has been renamed to `grunt-electron-installer-windows`! 🚨
+Not a fan of [Grunt](http://gruntjs.com/)? Use the vanilla module [`electron-installer-windows`](https://github.com/unindented/electron-installer-windows)!
 
 
 ## Getting Started
@@ -19,7 +18,7 @@ npm install grunt-electron-windows-installer --save-dev
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-electron-windows-installer');
+grunt.loadNpmTasks('grunt-electron-windows-installer')
 ```
 
 *This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4), but in case you can't please use [v0.3.2](https://github.com/gruntjs/grunt-contrib-copy/tree/grunt-0.3-stable).*
@@ -33,42 +32,92 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Usage
 
-Say your app lives in `path/to/app`, and has a structure like this:
+Say your Electron app lives in `path\to\app`, and has a structure like this:
 
 ```
-$ tree path/to/app/ -L 2
-path/to/app/
+.
 ├── LICENSE
-├── index.js
-├── main
-│   ├── index.js
-│   └── squirrel.js
+├── README.md
 ├── node_modules
-│   ├── fs-plus
-│   └── yargs
+│   ├── electron-packager
+│   └── electron-prebuilt
 ├── package.json
-└── renderer
-    ├── index.css
-    ├── index.html
-    └── index.js
+├── resources
+│   ├── Icon.png
+│   ├── IconTemplate.png
+│   └── IconTemplate@2x.png
+└── src
+    ├── index.js
+    ├── main
+    │   └── index.js
+    └── renderer
+        ├── index.html
+        └── index.js
 ```
 
-To create a package from your app, the configuration for your task would look like this:
+You now run `electron-packager` to build the app for Debian:
+
+```
+$ electron-packager . app --platform win32 --arch x64 --out dist\
+```
+
+And you end up with something like this in your `dist` folder:
+
+```
+.
+└── dist
+    └── app-win32-x64
+        ├── LICENSE
+        ├── LICENSES.chromium.html
+        ├── content_resources_200_percent.pak
+        ├── content_shell.pak
+        ├── d3dcompiler_47.dll
+        ├── icudtl.dat
+        ├── libEGL.dll
+        ├── libGLESv2.dll
+        ├── locales
+        ├── msvcp120.dll
+        ├── msvcr120.dll
+        ├── natives_blob.bin
+        ├── node.dll
+        ├── pdf.dll
+        ├── app.exe
+        ├── resources
+        ├── snapshot_blob.bin
+        ├── ui_resources_200_percent.pak
+        ├── vccorlib120.dll
+        ├── version
+        └── xinput1_3.dll
+        ├── LICENSE
+        ├── LICENSES.chromium.html
+        ├── content_shell.pak
+        ├── app
+        ├── icudtl.dat
+        ├── libgcrypt.so.11
+        ├── libnode.so
+        ├── locales
+        ├── natives_blob.bin
+        ├── resources
+        ├── snapshot_blob.bin
+        └── version
+```
+
+In order to create a package for your app, the configuration for your Grunt task would look like this:
 
 ```js
 'electron-windows-installer': {
   app: {
-    src: 'path/to/app/',
-    dest: 'path/to/out/'
+    src: 'path\to\app\dist\app-win32-x64',
+    dest: 'path\to\app\dist\installers\'
   }
 }
 ```
 
-The task will try to extract all necessary information from your `package.json`. When it finishes, you'll have these:
+The task will try to extract all necessary information from your `package.json`, and then generate your packages at `path\to\app\dist\installers\`:
 
 ```
-$ ls path\to\out
-RELEASES  app-0.0.1-full.nupkg  Setup.exe
+$ ls path\to\app\dist\installers
+RELEASES  app-0.0.1-full.nupkg  app-0.0.1-setup.exe  app-0.0.1-setup.msi
 ```
 
 You can also create different packages for different architectures, while manually overriding certain options:
@@ -77,144 +126,24 @@ You can also create different packages for different architectures, while manual
 'electron-windows-installer': {
   options: {
     productName: 'Foo',
-    productDescription: 'Bar baz qux.',
-    rename: function (dest, src) {
-      if (/\.exe$/.test(src)) {
-        src = '<%= name %>-<%= version %>-setup.exe';
-      }
-      return dest + src;
-    }
+    productDescription: 'Bar baz qux.'
   },
 
   win32: {
-    src: 'path/to/win32/',
-    dest: 'path/to/out/win32/'
+    src: 'path\to\app\dist\app-win32-ia32',
+    dest: 'path\to\app\dist\installers\'
   },
 
   win64: {
-    src: 'path/to/win64/',
-    dest: 'path/to/out/win64/'
+    src: 'path\to\app\dist\app-win32-x64',
+    dest: 'path\to\app\dist\installers\'
   }
 }
 ```
 
 ### Options
 
-#### src
-Type: `String`
-Default: `undefined`
-
-Path to the folder that contains your built Electron application.
-
-#### dest
-Type: `String`
-Default: `undefined`
-
-Path to the folder that will contain your Windows installer.
-
-#### options.name
-Type: `String`
-Default: `package.name`
-
-Name of the package (e.g. `atom`), used in the [`id` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.productName
-Type: `String`
-Default: `package.productName || package.name`
-
-Name of the application (e.g. `Atom`), used in the [`title` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.description
-Type: `String`
-Default: `package.description`
-
-Short description of the application, used in the [`summary` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.productDescription
-Type: `String`
-Default: `package.productDescription || package.description`
-
-Long description of the application, used in the [`description` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.version
-Type: `String`
-Default: `package.version`
-
-Long description of the application, used in the [`version` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.copyright
-Type: `String`
-Default: `package.copyright`
-
-Copyright details for the package, used in the [`copyright` field of the `nuspec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.authors
-Type: `Array[String]`
-Default: `package.author`
-
-List of authors of the package, used in the [`authors` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.owners
-Type: `Array[String]`
-Default: `package.author`
-
-List of owners of the package, used in the [`authors` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.homepage
-Type: `String`
-Default: `package.homepage || package.author.url`
-
-URL of the homepage for the package, used in the [`projectUrl` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.iconUrl
-Type: `String`
-Default: `undefined`
-
-URL for the image to use as the icon for the package in the *Manage NuGet Packages* dialog box, used in the [`iconUrl` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.licenseUrl
-Type: `String`
-Default: `undefined`
-
-URL for the license that the package is under, used in the [`licenseUrl` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.requireLicenseAcceptance
-Type: `String`
-Default: `false`
-
-Whether the client needs to ensure that the package license (described by `licenseUrl`) is accepted before the package is installed, used in the [`requireLicenseAcceptance` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.tags
-Type: `Array[String]`
-Default: `[]`
-
-List of tags and keywords that describe the package, used in the [`tags` field of the `spec` file](https://docs.nuget.org/create/nuspec-reference).
-
-#### options.rename
-Type: `Function`
-Default: `function (dest, src) { return dest + src; }`
-
-Function that renames all files generated by the task just before putting them in your `dest` folder.
-
-
-## Updating
-
-### Squirrel
-Current version: 1.2.2
-
-To update [Squirrel](https://github.com/Squirrel/Squirrel.Windows) to the latest version:
-
-```
-$ rm vendor/squirrel/*
-$ curl -kLo vendor/squirrel.zip https://github.com/Squirrel/Squirrel.Windows/releases/download/1.2.2/Squirrel.Windows-1.2.2.zip
-$ unzip -d vendor/squirrel/ vendor/squirrel.zip
-$ rm vendor/squirrel.zip
-```
-
-### NuGet
-Current version: 2.8.5
-
-To update [NuGet](http://nuget.codeplex.com/) to the latest version, head over to the [releases page](http://nuget.codeplex.com/releases).
+See the options supported by [`electron-installer-windows`](https://github.com/unindented/electron-installer-windows#options).
 
 
 ## Meta
@@ -230,4 +159,4 @@ To update [NuGet](http://nuget.codeplex.com/) to the latest version, head over t
 
 ## License
 
-Copyright (c) 2015 Daniel Perez Alvarez ([unindented.org](https://unindented.org/)). This is free software, and may be redistributed under the terms specified in the LICENSE file.
+Copyright (c) 2016 Daniel Perez Alvarez ([unindented.org](https://unindented.org/)). This is free software, and may be redistributed under the terms specified in the LICENSE file.
