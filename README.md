@@ -1,4 +1,4 @@
-# grunt-electron-windows-installer [![Version](https://img.shields.io/npm/v/grunt-electron-windows-installer.svg)](https://www.npmjs.com/package/grunt-electron-windows-installer) [![Build Status](https://img.shields.io/travis/unindented/grunt-electron-windows-installer.svg)](http://travis-ci.org/unindented/grunt-electron-windows-installer) [![Build Status](https://img.shields.io/appveyor/ci/unindented/grunt-electron-windows-installer.svg)](https://ci.appveyor.com/project/unindented/grunt-electron-windows-installer) [![Dependency Status](https://img.shields.io/gemnasium/unindented/grunt-electron-windows-installer.svg)](https://gemnasium.com/unindented/grunt-electron-windows-installer)
+# grunt-electron-installer-windows [![Version](https://img.shields.io/npm/v/grunt-electron-installer-windows.svg)](https://www.npmjs.com/package/grunt-electron-installer-windows) [![Build Status](https://img.shields.io/travis/unindented/grunt-electron-installer-windows.svg)](http://travis-ci.org/unindented/grunt-electron-installer-windows) [![Build Status](https://img.shields.io/appveyor/ci/unindented/grunt-electron-installer-windows.svg)](https://ci.appveyor.com/project/unindented/grunt-electron-installer-windows) [![Dependency Status](https://img.shields.io/gemnasium/unindented/grunt-electron-installer-windows.svg)](https://gemnasium.com/unindented/grunt-electron-installer-windows)
 
 > Create a Windows package for your Electron app.
 
@@ -12,13 +12,13 @@ This plugin requires Grunt `~0.4.0`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-electron-windows-installer --save-dev
+npm install grunt-electron-installer-windows --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-electron-windows-installer')
+grunt.loadNpmTasks('grunt-electron-installer-windows')
 ```
 
 *This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4), but in case you can't please use [v0.3.2](https://github.com/gruntjs/grunt-contrib-copy/tree/grunt-0.3-stable).*
@@ -26,7 +26,7 @@ grunt.loadNpmTasks('grunt-electron-windows-installer')
 
 ## Installer task
 
-_Run this task with the `grunt electron-windows-installer` command._
+_Run this task with the `grunt electron-installer-windows` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
@@ -105,7 +105,7 @@ And you end up with something like this in your `dist` folder:
 In order to create a package for your app, the configuration for your Grunt task would look like this:
 
 ```js
-'electron-windows-installer': {
+'electron-installer-windows': {
   app: {
     src: 'path\to\app\dist\app-win32-x64',
     dest: 'path\to\app\dist\installers\'
@@ -123,7 +123,7 @@ RELEASES  app-0.0.1-full.nupkg  app-0.0.1-setup.exe  app-0.0.1-setup.msi
 You can also create different packages for different architectures, while manually overriding certain options:
 
 ```js
-'electron-windows-installer': {
+'electron-installer-windows': {
   options: {
     productName: 'Foo',
     productDescription: 'Bar baz qux.'
@@ -148,8 +148,8 @@ See the options supported by [`electron-installer-windows`](https://github.com/u
 
 ## Meta
 
-* Code: `git clone git://github.com/unindented/grunt-electron-windows-installer.git`
-* Home: <https://github.com/unindented/grunt-electron-windows-installer/>
+* Code: `git clone git://github.com/unindented/grunt-electron-installer-windows.git`
+* Home: <https://github.com/unindented/grunt-electron-installer-windows/>
 
 
 ## Contributors

@@ -3,7 +3,7 @@
 var installer = require('electron-installer-windows')
 
 module.exports = function (grunt) {
-  grunt.registerMultiTask('electron-windows-installer',
+  grunt.registerMultiTask('electron-installer-windows',
     'Create a Windows package for your Electron app.',
     function () {
       var done = this.async()

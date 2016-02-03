@@ -1,5 +1,5 @@
 {
-  "name": "grunt-electron-windows-installer",
+  "name": "grunt-electron-installer-windows",
   "description": "Create a Windows package for your Electron app.",
   "version": "0.1.1",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/unindented/grunt-electron-windows-installer.git"
+    "url": "git://github.com/unindented/grunt-electron-installer-windows.git"
   },
   "keywords": [
     "gruntplugin",
