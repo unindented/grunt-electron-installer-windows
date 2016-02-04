@@ -1,3 +1,5 @@
+![Electron Installer for Windows](resources/logo.png)
+
 # grunt-electron-installer-windows [![Version](https://img.shields.io/npm/v/grunt-electron-installer-windows.svg)](https://www.npmjs.com/package/grunt-electron-installer-windows) [![Build Status](https://img.shields.io/travis/unindented/grunt-electron-installer-windows.svg)](http://travis-ci.org/unindented/grunt-electron-installer-windows) [![Build Status](https://img.shields.io/appveyor/ci/unindented/grunt-electron-installer-windows.svg)](https://ci.appveyor.com/project/unindented/grunt-electron-installer-windows) [![Dependency Status](https://img.shields.io/gemnasium/unindented/grunt-electron-installer-windows.svg)](https://gemnasium.com/unindented/grunt-electron-installer-windows)
 
 > Create a Windows package for your Electron app.
