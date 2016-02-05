@@ -3,6 +3,9 @@
 > Create a Windows package for your Electron app.
 
 
+🚨 This package has been renamed to `grunt-electron-installer-windows`! 🚨
+
+
 ## Getting Started
 
 This plugin requires Grunt `~0.4.0`
