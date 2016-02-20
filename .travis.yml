@@ -9,6 +9,14 @@ env:
   - NODE_VERSION="4.2"
   - NODE_VERSION="0.12"
 
+deploy:
+  provider: npm
+  email: unindented@gmail.com
+  api_key:
+    secure: KFq03hmaQkaHRjjss5ew/gAewZhAwzffw4wYEzjb4QHKQS0kuy73PQg/yERa+XqW/FnWd1oXI5n0biYg2WIAdy4X6UkKHcCG7M5TwW0vOtN0k9qSgTK31JT2ZJ3HIsg2Q1ebY8J7jjDpyvvawKatHEkC29KfSuES9UMQs3i2lpYva3S/mdqA+vepyB9x+iUeF6eiaw7eztpmGj3x2RhqQFLk3+1Pj3Wl8hsxmNzDJDlZSNCRIOyWpP1dMkfKl5XRgG70CgHa4mtUXSWeXhjHVCpz3x6e22eyAquAf2CPgwsTlYq7lTxZ4Eun6wUOaE1RqYwdtLAGrHLIIYWykTFy9r5Cbm+zkxw66X8eSJ3mNOItpK7FgCGd+4AUbtWFOhCArhuzdfNA60dtdCSqqcoZOV7LGAZZfelxHVDFN0SLBKjWFtZRh9IHQS6gHL0rbT0oUnGPTcBKXoaxxgujtEOnpS7CrT/a2wUQ0WLZz4/V1cay4EJSnLjA5JRmljIINgDgBaEmlYKz389kEBAGJH4oDbJiwwMprY/fsb9WnMJpkcrknt62pwD6GYpQpP/VzA1QfQgUx13g4KIBKx7RSh+ozJYRMojjupUXC6r08bIw76VOpHVUKgaAkNKFHo8+Sk9khA2E/4eidmXVMvaJgcchS7zDw2VfWo4Ks2blEnIklNQ=
+  on:
+    tags: true
+
 before_install:
   - nvm install $NODE_VERSION
   - npm install -g grunt-cli
