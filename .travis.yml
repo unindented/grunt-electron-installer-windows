@@ -6,8 +6,8 @@ addons:
       - wine
 
 env:
-  - NODE_VERSION="4.2"
-  - NODE_VERSION="0.12"
+  - NODE_VERSION="6"
+  - NODE_VERSION="4"
 
 deploy:
   provider: npm
