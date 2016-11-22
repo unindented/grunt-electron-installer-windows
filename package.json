@@ -23,7 +23,7 @@
     "electron-installer-windows": "^0.2.0"
   },
   "devDependencies": {
-    "async": "^2.0.0",
+    "async": "^2.1.4",
     "eslint": "^3.0.1",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-promise": "^3.0.0",
