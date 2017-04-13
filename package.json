@@ -29,7 +29,7 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "grunt": "^1.0.0",
-    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-nodeunit": "^1.0.0",
     "grunt-eslint": "^19.0.0"
   },
